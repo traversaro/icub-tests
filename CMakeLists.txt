@@ -38,6 +38,7 @@ add_subdirectory(src/torqueControl-consistency)
 # Build optical encoder tests
 add_subdirectory(src/opticalEncoders-consistency)
 add_subdirectory(src/opticalEncoders-drift)
+add_subdirectory(src/encodersConsistencyCheck)
 
 # Build model consistency check
 if(ICUB_TESTS_USES_ICUB_MAIN)
