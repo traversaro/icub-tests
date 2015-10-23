@@ -8,7 +8,9 @@
  */
 
 #include <cmath>
-
+#include <sys/time.h>
+#include <stdio.h>
+#include <unistd.h>
 #include <rtf/dll/Plugin.h>
 #include <rtf/TestAssert.h>
 #include <rtf/yarp/YarpTestAsserter.h>
@@ -178,14 +180,38 @@ void MotorTest::run() {
             read=iEncoders->getEncoder(joint,m_aHome+joint);
             yarp::os::Time::delay(0.1);
         }
-        RTF_TEST_CHECK(read, "getEncoder() returned true");
+        RTF_TEST_CHECK(read, "getEncoder() returned false");
 
+        RTF_TEST_REPORT(Asserter::format("moving joint %d to %.2lf", joint, m_aTargetVal[joint]));
         RTF_TEST_CHECK(iPosition->positionMove(joint, m_aTargetVal[joint]),
-            Asserter::format("moving joint %d to %.2lf", joint, m_aTargetVal[joint]));
+            Asserter::format("positionMove for joint %d with target %.2lf returns error", joint, m_aTargetVal[joint]));
 
         doneAll=false;
+        RTF_TEST_REPORT("checking if checkMotionDone returns false after position move");
         ret=iPosition->checkMotionDone(&doneAll);
-        RTF_TEST_CHECK(!doneAll&&ret, "checking checkMotionDone returns false after position move");
+        RTF_TEST_CHECK(ret, "checkMotionDone returns false");
+        RTF_TEST_CHECK((doneAll==false), "doneAll is true");
+
+        int attempt=0;
+        struct timeval now, after;
+        gettimeofday(&now, NULL);
+        while(doneAll==true)
+        {
+            usleep(1000);
+            ret=iPosition->checkMotionDone(&doneAll);
+            RTF_TEST_CHECK(ret, Asserter::format(" attempt %d: checkMotionDone returns false"));
+            RTF_TEST_CHECK((doneAll==false), Asserter::format(" attempt %d: doneAll is true", attempt));
+            RTF_TEST_CHECK((doneAll==true), Asserter::format(" attempt %d: doneAll is false", attempt));
+            attempt++;
+        }
+        gettimeofday(&after, NULL);
+        long mtime, seconds, useconds;
+        seconds  = after.tv_sec  - now.tv_sec;
+        useconds = after.tv_usec - now.tv_usec;
+
+        mtime = ((seconds) * 1000 + useconds/1000.0) + 0.5;
+        RTF_TEST_REPORT(Asserter::format(" exit from while after %d atempts time=%ld", attempt, mtime));
+
 
         RTF_TEST_REPORT(Asserter::format("Waiting timeout %.2lf", m_aTimeout[joint]));
         bool reached=false;
@@ -196,7 +222,7 @@ void MotorTest::run() {
             timeNow=yarp::os::Time::now();
             yarp::os::Time::delay(0.1);
         }
-        RTF_TEST_CHECK(reached, "reached position");
+        RTF_TEST_CHECK(reached, Asserter::format("j %d doesn't reach the position"));
     }
 
     //////// check multiple joints
@@ -213,8 +239,10 @@ void MotorTest::run() {
 
     doneAll=false;
     // make sure that checkMotionDone return false right after a movement
+    RTF_TEST_REPORT("checking if checkMotionDone returns false after position move");
     ret=iPosition->checkMotionDone(&doneAll);
-    RTF_TEST_CHECK(!doneAll&&ret, "checking checkMotionDone returns false after position move");
+    RTF_TEST_CHECK(ret, "checkMotionDone returns false");
+    RTF_TEST_CHECK((doneAll==false), "doneAll is true");
 
     // wait some time
     double timeStart=yarp::os::Time::now();
@@ -238,7 +266,7 @@ void MotorTest::run() {
             yarp::os::Time::delay(0.1);
     }
 
-    RTF_TEST_CHECK(reached, "reached position");
+    RTF_TEST_CHECK(reached, "position not reached");
 
     if(reached) {
         // check checkMotionDone.
@@ -255,7 +283,7 @@ void MotorTest::run() {
                 yarp::os::Time::delay(0.1);
         }
 
-        RTF_TEST_CHECK(doneAll&&ret, "checking checkMotionDone returns true");
+        RTF_TEST_CHECK(doneAll&&ret, "checking checkMotionDone returns false");
     }
 
 
@@ -279,8 +307,11 @@ void MotorTest::run() {
     RTF_TEST_CHECK(iPosition2->positionMove(m_NumJoints, jmap, swapped_target),
             "moving all joints to home using group interface");
 
+    RTF_TEST_REPORT("checking if checkMotionDone returns false after position move");
     ret=iPosition->checkMotionDone(&doneAll);
-    RTF_TEST_CHECK(!doneAll&&ret, "checking checkMotionDone returns false after position move");
+    RTF_TEST_CHECK(ret, "checkMotionDone returns false");
+    RTF_TEST_CHECK((doneAll==false), "doneAll is true");
+
 
     timeStart=yarp::os::Time::now();
     timeNow=timeStart;
