@@ -1,0 +1,62 @@
+\section{Movement\+References\+Test Class Reference}
+\label{classMovementReferencesTest}\index{Movement\+References\+Test@{Movement\+References\+Test}}
+
+
+Check I\+Position\+Control2, I\+Velocity\+Control2, I\+Open\+Loop\+Control, I\+Position\+Direct.  
+
+
+
+
+{\ttfamily \#include $<$movement\+References\+Test.\+h$>$}
+
+
+
+Inherits Yarp\+Test\+Case.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{classMovementReferencesTest_ad9cc73f5b5865dec9d185bf4063e53a8} 
+virtual bool {\bfseries setup} (yarp\+::os\+::\+Property \&configuration)
+\item 
+\label{classMovementReferencesTest_a593c8be2be3fe9bf79c7d0d7c5d817b9} 
+virtual void {\bfseries tear\+Down} ()
+\item 
+\label{classMovementReferencesTest_afd727ad62714859a969e5b3c47959eca} 
+virtual void {\bfseries run} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Check I\+Position\+Control2, I\+Velocity\+Control2, I\+Open\+Loop\+Control, I\+Position\+Direct. 
+
+Check the following functions\+: \begin{DoxyItemize}
+\item I\+Position\+Control2\+::get\+Position\+Target() \item I\+Velocity\+Control2\+::get\+Ref\+Velocity() \item I\+Position\+Direct\+::get\+Ref\+Position() \item I\+Open\+Loop\+Control\+::get\+Ref\+Output()\end{DoxyItemize}
+Accepts the following parameters\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{7}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf Parameter name }&\PBS\centering {\bf Type }&\PBS\centering {\bf Units }&\PBS\centering {\bf Default Value }&\PBS\centering {\bf Required }&\PBS\centering {\bf Description }&\PBS\centering {\bf Notes  }\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf Parameter name }&\PBS\centering {\bf Type }&\PBS\centering {\bf Units }&\PBS\centering {\bf Default Value }&\PBS\centering {\bf Required }&\PBS\centering {\bf Description }&\PBS\centering {\bf Notes  }\\\cline{1-7}
+\endhead
+\PBS\centering name &\PBS\centering string &\PBS\centering -\/ &\PBS\centering \char`\"{}\+Movement\+References\+Test\char`\"{} &\PBS\centering No &\PBS\centering The name of the test. &\PBS\centering -\/ \\\cline{1-7}
+\PBS\centering portname &\PBS\centering string &\PBS\centering -\/ &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering The yarp port name of the controlboard to test. &\PBS\centering -\/ \\\cline{1-7}
+\PBS\centering joints &\PBS\centering int &\PBS\centering -\/ &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering Number of axes in the controlboard. &\PBS\centering Must be consistent with the value returned by get\+Axes method. \\\cline{1-7}
+\PBS\centering home &\PBS\centering vector of doubles of size joints &\PBS\centering deg &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the position to reach for passing the test. &\PBS\centering \\\cline{1-7}
+\PBS\centering target &\PBS\centering vector of doubles of size joints &\PBS\centering deg &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the position to reach for passing the test. &\PBS\centering \\\cline{1-7}
+\PBS\centering refvel &\PBS\centering vector of doubles of size joints &\PBS\centering deg/s &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the reference velocity value to set in the low level trajectory generator. &\PBS\centering \\\cline{1-7}
+\PBS\centering refacc &\PBS\centering vector of doubles of size joints &\PBS\centering deg/s$^\wedge$2 &\PBS\centering -\/ &\PBS\centering No &\PBS\centering For each joint the reference acceleration value to set in the low level trajectory generator. &\PBS\centering \\\cline{1-7}
+\end{longtabu}
+
+
+Definition at line 45 of file movement\+References\+Test.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/dev/icub-\/tests/src/movement\+References\+Test/movement\+References\+Test.\+h\item 
+C\+:/dev/icub-\/tests/src/movement\+References\+Test/movement\+References\+Test.\+cpp\end{DoxyCompactItemize}

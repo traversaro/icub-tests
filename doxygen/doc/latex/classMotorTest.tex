@@ -1,0 +1,64 @@
+\section{Motor\+Test Class Reference}
+\label{classMotorTest}\index{Motor\+Test@{Motor\+Test}}
+
+
+Check I\+Position\+Control and I\+Encoders.  
+
+
+
+
+{\ttfamily \#include $<$Motor\+Test.\+h$>$}
+
+
+
+Inherits Yarp\+Test\+Case.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{classMotorTest_a899f7015f4c982fd25b0a2de4d693562} 
+virtual bool {\bfseries setup} (yarp\+::os\+::\+Property \&configuration)
+\item 
+\label{classMotorTest_a35093fc16f2160699a962e2e600d12f7} 
+virtual void {\bfseries tear\+Down} ()
+\item 
+\label{classMotorTest_a7f262c968aa26e60b2d654fa0f3b6d1a} 
+virtual void {\bfseries run} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Check I\+Position\+Control and I\+Encoders. 
+
+Check the following functions\+: \begin{DoxyItemize}
+\item I\+Position\+Control\+::get\+Axes() \item I\+Position\+Control\+::position\+Move() \item I\+Position\+Control\+::check\+Motion\+Done() \item I\+Position\+Contol\+::set\+Ref\+Speeds() \item I\+Position\+Control\+::set\+Ref\+Accelerations() \item I\+Encoders\+::get\+Encoder() \item I\+Encoders\+::get\+Encoders()\end{DoxyItemize}
+Accepts the following parameters\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{7}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf Parameter name }&\PBS\centering {\bf Type }&\PBS\centering {\bf Units }&\PBS\centering {\bf Default Value }&\PBS\centering {\bf Required }&\PBS\centering {\bf Description }&\PBS\centering {\bf Notes  }\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering {\bf Parameter name }&\PBS\centering {\bf Type }&\PBS\centering {\bf Units }&\PBS\centering {\bf Default Value }&\PBS\centering {\bf Required }&\PBS\centering {\bf Description }&\PBS\centering {\bf Notes  }\\\cline{1-7}
+\endhead
+\PBS\centering name &\PBS\centering string &\PBS\centering -\/ &\PBS\centering \char`\"{}\+Motor\+Test\char`\"{} &\PBS\centering No &\PBS\centering The name of the test. &\PBS\centering -\/ \\\cline{1-7}
+\PBS\centering portname &\PBS\centering string &\PBS\centering -\/ &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering The yarp port name of the controlboard to test. &\PBS\centering -\/ \\\cline{1-7}
+\PBS\centering joints &\PBS\centering int &\PBS\centering -\/ &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering Number of axes in the controlboard. &\PBS\centering Must be consistent with the value returned by get\+Axes method. \\\cline{1-7}
+\PBS\centering target &\PBS\centering vector of doubles of size joints &\PBS\centering deg &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the position to reach for passing the test. &\PBS\centering \\\cline{1-7}
+\PBS\centering min &\PBS\centering vector of doubles of size joints &\PBS\centering deg &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the maximum lower error with respect to the target to consider the test as successful. &\PBS\centering \\\cline{1-7}
+\PBS\centering max &\PBS\centering vector of doubles of size joints &\PBS\centering deg &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the maximum upper error with respect to the target to consider the test as successful. &\PBS\centering \\\cline{1-7}
+\PBS\centering refvel &\PBS\centering vector of doubles of size joints &\PBS\centering deg/s &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the reference velocity value to set in the low level trajectory generator. &\PBS\centering \\\cline{1-7}
+\PBS\centering refacc &\PBS\centering vector of doubles of size joints &\PBS\centering deg/s$^\wedge$2 &\PBS\centering -\/ &\PBS\centering No &\PBS\centering For each joint the reference acceleration value to set in the low level trajectory generator. &\PBS\centering \\\cline{1-7}
+\PBS\centering timeout &\PBS\centering vector of doubles of size joints &\PBS\centering s &\PBS\centering -\/ &\PBS\centering Yes &\PBS\centering For each joint the maximum time to wait for the joint to reach the target. &\PBS\centering \\\cline{1-7}
+\end{longtabu}
+
+
+Definition at line 48 of file Motor\+Test.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/dev/icub-\/tests/src/motor-\/tests/Motor\+Test.\+h\item 
+C\+:/dev/icub-\/tests/src/motor-\/tests/Motor\+Test.\+cpp\end{DoxyCompactItemize}
